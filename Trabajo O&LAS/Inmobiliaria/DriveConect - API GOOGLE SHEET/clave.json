@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tahitidata",
+  "private_key_id": "a20a21b587d6a7ff1fba17533ed981b76f5838b8",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDm44mV9knuvYYu\nPDl+7eQL19s9Mb2a9PO5zsHJzEEKVtgza/SR0Q1xbA4jo+CgYh0I2HF5jYwtGLBY\n24mPhdsD35b7pnSeMW7Kb1bBre1GIvVrK6hTuRXpzSqwWkEGsTwVFdrR0HEFboOV\nilMS9Sr6JLUyEgy/bYVHGrXwwuA2d3zNjn6G6Z6T9ddpGj9iUQzcUXulTeIVW/oG\notmqSf5h4tX/iVpunGi0FCsM3VokQTuil8TLrQEcIH0kzghizgnlMq2hbN38ne6P\n1rEse08REj9dwTs07tVbudkGaenkSbz8TMLZD0FiSxrGwSGP1OkwxojtGAzsdXG4\n0lPqsqU/AgMBAAECggEAItjM71G0dzBVMTg3XfADNEMNXJnbvyiLemEj//7FrYz4\nOiE9Jcl9SRThDhb8iX2VWpGUOsoWvHMBS+qXwzjAGpW4gLLu3zX1vd7Po2af14SM\n3B0YMslN7zNfEdkP/wsT1tjYEETwhzyBO+THGfw0/XuPJLHzCOyQ1MT0GGoeaInB\nvLOVCe3OnoQYy+12Fi//EmoDuubvN9Jf09915dh6xLPWlbRYNYxffaqOEwcVVHlT\nbhYS4l/RCyMeWmDhwP05A/O5mNMZ4n7cbMGb7WG7WF8CC4Q0U5a+yvzRg0UTQHVw\nDe4zFi4zqNtRww+owj98A52Q9DTlcmEswGgolqYWSQKBgQD5AESv2z1//dJwJyvd\n7bVizGp9ZdwwJEHYAoR10Fjf5dNCvRWIz2hTy6aZu14gNUPcGe6UmuPKJLb8oqNr\nuRHuu78OmJACF7yOCMg6++8SB1EYOz4xRCXTR3iWeyG0KNPM26/FnyQDejUrDX/h\nhfwCLmzh2bn8E5XW7VTIzw2/VwKBgQDtYPB4cPEySXm5Pc8vLBOqp8hLM1X7OBoN\nJiiaG9F3lyxngE2GWiPvTzhf5A1eK7VcIfZYuzNIxjT0LHu/YvqsyPRHHP9z+gPZ\nZXLAtAbk+02qq0/Iw04OUuGiwKtcru3WvsUE4JxsXfOO4/P8LL8qNnKskqCRsj8I\nBac2iBngWQKBgQCO7+V+IdfDAnzr3sCizFMknP3AcFme1SFrE77gNrLeDHtiw1J6\nT72u5KgFdfaJfKowzj4T1npOzxawHdi7/OhbaDE7+r4oRWH7EvWGTpsleUfHJjME\nav9fspZ5o8NsPUegQLg9NKaizGN7DGvNlXFd+zKLz8Wg+8k3MNRL1fgpTwKBgQCb\nxDnn/sz3X6mleb7DyJubJ4BSgHxSXo0RxdFs1wZMAIJd5J56pBnihkyK9/4hpnLa\n41pg/W54ub+z3qDRhOTTjwZkx82FUDFIbb6wXzIK/jEH5mRzbF2DHrX7c4y/Q/bE\nLOjh+3YJ0ljpkgHfn4lN7O6w+YKuOJYN8I+6Q/Me+QKBgFSBgAD3tnLiSerzeXmB\nGSuLrBDPPiP77LF84uARjRnib+LD0jvMlsIQNl0xq8s62ikKv8TCtlGvNuNVufDv\nH+mNDTSLSsd49wUluednTeQvNmS4pUFQJ1TGxrBd1ULFbs1rUjh95ZPjE0WiHyDf\nE9annHMbJLZszqPxfr1npHWr\n-----END PRIVATE KEY-----\n",
+  "client_email": "datatahiti@tahitidata.iam.gserviceaccount.com",
+  "client_id": "103981169932234246754",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/datatahiti%40tahitidata.iam.gserviceaccount.com"
+}

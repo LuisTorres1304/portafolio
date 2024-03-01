@@ -1,0 +1,208 @@
+SELECT 
+age_id,
+cuil,
+est_codigo,
+res_codigo,
+ges_fecha,
+res_dias_suspension,
+res_requiera_cargar_promesa,
+res_dias_bloquea,
+masivos,
+domic_cod_postal,
+fallecimiento,
+situacion,
+lis_id,
+nombre_tramo,
+no_contacto AS NEGATIVO,
+contacto_directo AS POSITIVO,
+contacto_indirecto AS NEUTRO,
+sms,
+ivr,
+emails,
+def_consumidor,
+FROM
+  (select
+  j.*,
+  v.nombre_tramo,
+  case when j.res_codigo in('COR','RCO','SFAL','NOC','SNAT','CST','ECU','TFS','OCU') THEN 1 ELSE 0 end as no_contacto,
+  case when j.res_codigo in('REL','MPT','PDP','SVP','NEG','NRD','CPC','NOT','CPT','RPP') THEN 1 ELSE 0 end as contacto_directo,
+  case when j.res_codigo in('FAL','MAQ','MAT') THEN 1 ELSE 0 end as contacto_indirecto,
+  case when j.res_codigo in('SSMS','SMSK','SMS') then 1 else 0 end as sms,
+  case when j.res_codigo in('SIVR','IVRK') then 1 else 0 end as ivr,
+  case when j.res_codigo in("EMAIL") then 1 else 0 end as emails,
+  case when j.res_codigo in('LEG') THEN 1 ELSE 0 end as def_consumidor
+  from
+    (select
+    *
+    from
+      (SELECT
+      n.*
+      from
+        (SELECT
+        z.age_id,
+        z.cuil,
+        z.est_codigo,
+        z.res_codigo,
+        date(z.ges_fecha)ges_fecha,
+        z.res_dias_suspension,
+        z.res_requiera_cargar_promesa,
+        z.res_dias_bloquea,
+        z.masivos,
+        z.domic_cod_postal,
+        z.fallecimiento,
+        z.situacion,
+        CASE
+        WHEN z.cartera_id is null
+        THEN z.lis_id ELSE z.cartera_id END as lis_id
+          FROM
+          (
+            SELECT
+            j.age_id,
+            j.cuil,
+            j.est_codigo,
+            j.res_codigo,
+            j.ges_fecha,
+            j.res_dias_suspension,
+            j.res_requiera_cargar_promesa,
+            j.res_dias_bloquea,
+            j.masivos,
+            j.domic_cod_postal,
+            j.fallecimiento,
+            j.situacion,
+            case when j.lis_id = 86 then 87 else j.lis_id end as lis_id,
+            CASE
+            WHEN j.lis_id = 0
+            THEN h.cartera_id ELSE j.lis_id END as cartera_id
+            FROM
+              (SELECT 
+              age_id,
+              cuil,
+              est_codigo,
+              res_codigo,
+              ges_fecha,
+              res_dias_suspension,
+              res_requiera_cargar_promesa,
+              res_dias_bloquea,
+              masivos,
+              domic_cod_postal,
+              fallecimiento,
+              situacion,
+              CASE
+              WHEN n.lis_id is null
+              THEN n.cartera_id ELSE n.lis_id END as lis_id                                    
+              FROM(
+                  SELECT 
+                  g.age_id,
+                  g.cuil,
+                  g.est_codigo,
+                  g.res_codigo,
+                  ges_fecha,
+                  r.res_dias_suspension,
+                  r.res_requiera_cargar_promesa,
+                  r.res_dias_bloquea,
+                  CASE
+                  WHEN g.res_codigo in ("SSMS","SIVR","SIVX","EMAIL","EMAX","SSMX","SMS","IVR","SMS-MASIVO","EMAIL-100","SMSK","IVRK")
+                  THEN "Masivos" else "No masivos" end as masivos,
+                  d.domic_cod_postal,
+                  f.fallecimiento,
+                  CASE
+                  WHEN max(p.situacion) is null or max(p.situacion) > 5
+                  THEN null ELSE max(p.situacion) END as situacion,
+                  CASE
+                  WHEN g.lis_id = 0 or cast(g.lis_id as string) like "%20000%" THEN s.lis_id
+                  ELSE g.lis_id END as lis_id,
+                  g.lis_id as cartera_id
+
+                  FROM `latam-recovery.atiendo.gestiones` g
+                  left join `latam-recovery.atiendo.resultados` r on 
+                  g.res_codigo = r.res_codigo
+                  left join `latam-recovery.BI.vw_deuda_por_cartera_sin_subdivisiones_1er_paso`d
+                  on g.cuil = d.num_documento and g.lis_id = d.cartera_id
+                  left join `latam-recovery.BI.vw_DNIs_BCRA_fallecimiento`f
+                  on g.cuil = f.num_documento
+                  left  join `latam-recovery.BCRA.deudores` p
+                  on g.cuil = CAST(substr(CAST(p.nro_de_id AS STRING ), 3 , 8) AS INTEGER)
+                  left join `carteras.vw_DNIs_en_1_cartera_de_datos_recuperados_para_gestiones` s
+                  on g.cuil = s.cuil
+                  group by
+                  g.age_id,
+                  g.cuil,
+                  g.est_codigo,
+                  g.lis_id,
+                  g.res_codigo,
+                  ges_fecha,
+                  r.res_dias_suspension,
+                  r.res_requiera_cargar_promesa,
+                  r.res_dias_bloquea,
+                  d.domic_cod_postal,
+                  f.fallecimiento,
+                  s.lis_id
+                )n
+              )j
+            left join (
+              select num_documento, min(cartera_id) as cartera_id
+              from
+              `BI.vw_deuda_por_cartera_sin_subdivisiones_1er_paso`
+              group by num_documento
+              )h
+            on j.cuil = h.num_documento
+          )z
+      )n
+    )
+    union all
+    select
+    age_id,
+    cuil,	
+    cast(est_codigo as string) as est_codigo,	
+    res_codigo,	
+    ges_fecha,	
+    res_dias_suspension,	
+    res_requiera_cargar_promesa,	
+    res_dias_bloquea,	
+    masivos,	
+    cast(domic_cod_postal as string)as domic_cod_postal,	
+    fallecimiento,	
+    situacion,	
+    lis_id
+    from
+      (select
+      case when cuil is not null then 0 else 0 end as age_id,
+      cuil,
+      case when cuil is not null then null else null end as est_codigo,
+      res_codigo, 
+      ges_fecha, 
+      case when cuil is not null then 0 else null end as res_dias_suspension,
+      case when cuil is not null then 0 else null end as res_requiera_cargar_promesa,
+      case when cuil is not null then 0 else null end as res_dias_bloquea,
+      case when cuil is not null then "Masivos" else null end as masivos,
+      case when cuil is not null then null else null end as domic_cod_postal,
+      case when cuil is not null then null else null end as fallecimiento,
+      case when cuil is not null then null else null end as situacion,
+      lis_id, 
+      
+      from
+          (
+            (select cuil, lis_id, fecha as ges_fecha,case when cuil is not null then "SIVR" end as res_codigo 
+            from `masivos_isla_5.historico_envio_ivr_isla_5`  )
+          union all (
+            select cuil, lis_id, fecha_envio as ges_fecha, case when cuil is not null then "SSMS" end as res_codigo 
+            from `masivos_isla_5.envios_sms_historico_isla_5`)
+          union all (
+            select cuil, cast(lista as integer) as lis_id, fecha_envio as ges_fecha, 
+            case when cuil is not null then 'EMAIL' end as res_codigo
+            from `masivos_isla_5.envios_email_historico_isla_5`)
+          )
+      )
+    )j
+  left join (
+    select distinct cuil, lis_id, nombre_tramo 
+    from`carteras.vw_asignacion01ConCarteraId`
+    )v
+  on j.cuil = v.cuil and j.lis_id = v.lis_id
+  left join (select distinct num_documento as doc, cartera_id
+  from `carteras.todas_las_carteras`
+  )x
+  on 
+  j.cuil = x.doc and j.lis_id = x.cartera_id
+  where v.cuil is not null
+)

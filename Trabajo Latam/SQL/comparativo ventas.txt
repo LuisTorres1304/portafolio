@@ -1,0 +1,143 @@
+SELECT a.*,
+ROW_NUMBER() OVER (PARTITION BY a.cuil,a.lis_id ORDER BY a.cuil,a.anio_mes DESC) AS row_number,
+case
+  when (cant_gestiones is not null and cant_gestiones >0) then a.cuil else null end as cuil_gestionado,
+b.ult_deuda_capital 
+FROM
+  (SELECT a.*,
+  b.cesionario,
+  b.empresa
+  FROM
+    (select a.* ,b.recaudo,c.cant_gestiones, case when c.cant_gestiones is not null then 1 else 0 end as gestionado 
+    from(
+      select 
+        a.*,
+        b.deuda_venc,
+        b.deuda_total,
+        c.nombre_tramo 
+        from( 
+          select 
+          cuil, 
+          lis_id,
+          med_tramo, 
+          FORMAT_DATE('%Y-%m', fecha) AS anio_mes 
+          from `atiendo.historico_cambio_grupo` WHERE lis_id NOT IN(1,2,3,5,14,299)
+          group by med_tramo,cuil, lis_id, fecha
+        )a
+      left join 
+      (
+        select 
+        cuil, 
+        lis_id,
+        sum(deuda_venc)deuda_venc, 
+        sum(deuda_total)deuda_total 
+        from `carteras.vw_asignacion01ConCarteraId` 
+        group by cuil, lis_id
+      )b
+      on a.cuil = b.cuil and a.lis_id = b.lis_id
+      left join
+      (
+        select 
+        * 
+        from `BI.Tramos`
+      )c
+      on a.med_tramo = c.id_tramo
+    )a
+
+    left join
+    (
+      select 
+      cast(dni as integer)dni, 
+      sum(monto_total) recaudo, 
+      anio_mes,
+      id_cartera,
+      agencia,
+      med_tramo 
+      from
+      (
+        select 
+        case 
+        when length(cast( dni as string)) = 11 then substring(cast(dni as string),3,8) 
+        when length(cast( dni as string)) > 8 then left(cast(dni as string),8)
+        else cast(dni as string) end as dni, 
+        monto_total, 
+        id_cartera, 
+        FORMAT_DATE('%Y-%m', fecha_de_cobro) AS anio_mes,
+        --concat(extract(YEAR from fecha_de_cobro),"-",EXTRACT(MONTH from fecha_de_cobro))anio_mes,
+        agencia,
+        med_tramo 
+        from(
+          select 
+          *,
+          case when UPPER(operador) like"%MLT%" then "MLT" 
+          when UPPER(operador) like"%RCI%" then "RCI" 
+          when UPPER(operador) like"%CUERVO%" then "CUERVO"
+          when UPPER(operador) like"%MULLER%" then "MÜLLER"
+          when UPPER(operador) like"%MB%" then "MB"
+          when UPPER(operador) like"%B&G%" then "B&G"
+          when UPPER(operador) like"%Sin Identificar%" or UPPER(operador) like"%Sin Informar%" then "SIN INFORMAR"
+          else "GEDREZ" end as agencia 
+          from`BI.vw_historico_recaudo`
+        ) 
+        where fecha_de_cobro >= "2022-09-01"
+      ) 
+      group by dni,anio_mes,id_cartera,agencia,med_tramo
+    )b
+    on a.cuil = b.dni and a.anio_mes = b.anio_mes and a.lis_id = b.id_cartera and a.nombre_tramo = b.agencia
+
+    left join(
+    select cuil,lis_id,anio_mes,count(cuil)cant_gestiones 
+    from(
+      select cuil, lis_id,ges_fecha, 
+      FORMAT_DATE('%Y-%m', ges_fecha) AS anio_mes
+      --concat(extract(YEAR from ges_fecha),"-",EXTRACT(MONTH from ges_fecha))anio_mes 
+      from `BI.vw_gestiones` where date(ges_fecha) >= "2022-09-01" 
+      ) group by cuil, lis_id,anio_mes
+    )c
+    on a.cuil = c.cuil and a.lis_id = c.lis_id and a.anio_mes = c.anio_mes 
+  )a 
+  LEFT JOIN(
+    SELECT * FROM `BI.empresa_cesionario_listas`
+  )b
+  on a.lis_id = b.lis_id
+
+  --where a.lis_id = 330
+)a 
+LEFT JOIN (
+  select lis_id,
+  MAX(deuda_capital) ult_deuda_capital
+  from
+    (SELECT lis_id,
+    anio_mes,
+    SUM(deuda_venc)  as deuda_capital
+    FROM
+    (select 
+            a.*,
+            b.deuda_venc
+            from( 
+              select 
+              cuil, 
+              lis_id,
+              med_tramo, 
+              FORMAT_DATE('%Y-%m', fecha) AS anio_mes 
+              from `atiendo.historico_cambio_grupo` 
+              group by med_tramo,cuil, lis_id, fecha
+            )a
+          left join 
+          (
+            select 
+            cuil, 
+            lis_id,
+            sum(deuda_venc)deuda_venc, 
+            sum(deuda_total)deuda_total 
+            from `carteras.vw_asignacion01ConCarteraId` 
+            group by cuil, lis_id
+          )b
+          on a.cuil = b.cuil and a.lis_id = b.lis_id)
+    GROUP BY lis_id,
+    anio_mes
+  )
+  GROUP BY lis_id
+
+)b
+on a.lis_id = b.lis_id

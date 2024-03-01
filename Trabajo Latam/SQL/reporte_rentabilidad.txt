@@ -1,0 +1,107 @@
+SELECT A.*,
+d.FECHA_FIN_ASIGNACION
+FROM
+  (SELECT a.*,
+  b.pago,
+  b.cant_pagos,
+  c.cuil_cumplio as cuil_promesa_pago,
+  c.recaudo_x_promesa,
+  DENSE_RANK() OVER (ORDER BY primer_dia_asignacion)numero_asignacion
+  FROM
+    (SELECT* ,
+      case when ivr>0 or sms>0 or email>0 
+      then ROUND(((email*0.1)+(ivr*1)+(sms*14.1)),2) else 0 end as Costo_masivo,
+      case
+      when Ges_Operador >0 then Ges_Operador * 1  else 0 end as Costo_operador, -- 1.50 EL MINUTO
+      CASE 
+          WHEN Ges_Operador >0 THEN numero_documento
+          Else null
+      END AS cuil_operado
+    FROM
+      (SELECT *,
+      (contacto +neutro+ no_contacto) Ges_Operador,
+      (ivr+sms+email) Ges_Masivo
+      FROM
+        (select
+        numero_documento,
+        max(deuda)monto,
+        max(dia_asignacion)ultm_asig,
+        max(mora)mora,
+        max(productos)productos,
+        anio_mes,
+        CODIGO_OPERATORIA,
+        primer_dia_asignacion
+        from
+        (
+          select numero_documento,a.dia_asignacion,
+          round(sum(monto_asignado),2)deuda,
+          CODIGO_OPERATORIA,
+          FORMAT_DATE('%Y-%m', a.dia_asignacion) AS anio_mes,
+          mora,primer_dia_asignacion,count(distinct PAYMENT_ACCOUNT)productos 
+          from
+            (SELECT * FROM `telecom_pre_baja.historico_asignacion_diaria`
+            )a
+            inner join(
+              SELECT distinct cuenta_code,DIA_ASIGNACION FROM `telecom_pre_baja.archivo_MA`
+            )b
+            on a.PAYMENT_ACCOUNT = b.cuenta_code and a.primer_dia_asignacion = b.DIA_ASIGNACION
+          group by 
+          numero_documento,
+          CODIGO_OPERATORIA,
+          dia_asignacion,
+          mora,primer_dia_asignacion,
+          FORMAT_DATE('%Y-%m', a.dia_asignacion)
+        )
+      group by numero_documento,anio_mes,CODIGO_OPERATORIA,primer_dia_asignacion
+
+      )a
+      LEFT JOIN(
+        SELECT * FROM `telecom_pre_baja.vw_reporte_rentabilidad_gestiones`
+      )b
+      ON a.numero_documento = b.dni AND a.anio_mes = b.mes_anio
+    )
+  )a
+  LEFT JOIN(
+    SELECT mes_anio,
+  SUM(Pago)Pago,
+  SUM(cant_pagos)cant_pagos,
+  NUMERO_DOCUMENTO ,
+  CODIGO_OPERATORIA
+  FROM
+    (SELECT a.*,
+    b.NUMERO_DOCUMENTO,b.CODIGO_OPERATORIA
+    FROM
+      (SELECT CUENTA_CODE_PAYMENT_ACCOUNT,mes_anio,
+      SUM(Cobrado)Pago, count(Fecha_Cobro)cant_pagos
+      FROM
+        (SELECT *, 
+        FORMAT_TIMESTAMP('%Y-%m', date(Fecha_Cobro)) AS mes_anio
+        FROM `telecom_pre_baja.pagos`
+        )
+      GROUP BY CUENTA_CODE_PAYMENT_ACCOUNT,mes_anio
+      )a 
+      LEFT JOIN(
+        SELECT DISTINCT NUMERO_DOCUMENTO, PAYMENT_ACCOUNT,CODIGO_OPERATORIA 
+        FROM  `telecom_pre_baja.archivo_ca`
+      )b
+      ON a.CUENTA_CODE_PAYMENT_ACCOUNT = b.PAYMENT_ACCOUNT 
+    )
+    GROUP BY NUMERO_DOCUMENTO,mes_anio,CODIGO_OPERATORIA
+  )b
+  ON a.numero_documento = b.NUMERO_DOCUMENTO AND a.anio_mes = b.mes_anio and a.CODIGO_OPERATORIA = b.CODIGO_OPERATORIA
+  LEFT JOIN(
+  SELECT cuil_cumplio,round(sum(recaudo_x_promesa),2)recaudo_x_promesa,
+    sum(cant_pagos)cant_pagos_con_promesas,
+    mes_anio
+    FROM  `telecom_pre_baja.vw_promesas_cumplidas_x_cuil`
+    GROUP BY cuil_cumplio,mes_anio 
+  ) c
+  on a.numero_documento = c.cuil_cumplio and a.mes_anio = c.mes_anio
+)a
+LEFT JOIN
+(SELECT NUMERO_DOCUMENTO,CODIGO_OPERATORIA,
+max(FECHA_FIN_ASIGNACION)FECHA_FIN_ASIGNACION
+ FROM `telecom_pre_baja.archivo_ca`
+ GROUP BY NUMERO_DOCUMENTO,CODIGO_OPERATORIA
+)d
+ON a.numero_documento = d.NUMERO_DOCUMENTO and a.CODIGO_OPERATORIA = d.codigo_operatoria 

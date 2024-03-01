@@ -1,0 +1,44 @@
+USE ordenes;
+GO
+
+CREATE SCHEMA WMS;
+GO
+
+USE ordenes;
+GO
+
+CREATE TABLE WMS.ord_orig (
+    NRO_ORDEN VARCHAR(13),
+    COD_SKU_SAP INT,
+    SUCURSAL VARCHAR(4),
+    UND_ORDEN INT,
+    FECHA_ORDEN DATE
+);
+GO
+
+USE ordenes;
+GO
+
+CREATE TABLE WMS.ord_modif (
+    NRO_ORDEN VARCHAR(13),
+    COD_SKU_SAP INT,
+    SUCURSAL VARCHAR(4),
+    UND_ORDEN INT,
+    FECHA_ORDEN DATE
+);
+GO
+
+USE ordenes;
+GO
+
+CREATE PROCEDURE WMS.ActualizarUND_ORDEN
+    @fecha DATE
+AS
+BEGIN
+    UPDATE WMS.ord_orig
+    SET UND_ORDEN = ord_modif.UND_ORDEN
+    FROM WMS.ord_orig
+    INNER JOIN WMS.ord_modif ON ord_orig.NRO_ORDEN = ord_modif.NRO_ORDEN
+    WHERE ord_modif.FECHA_ORDEN = @fecha;
+END;
+GO

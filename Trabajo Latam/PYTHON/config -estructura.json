@@ -1,0 +1,1036 @@
+{
+	"proyecto": [
+		{
+			"nombre": "latam-recovery",
+			"datasets": [
+				{
+					"nombre": "atiendo20_02",
+					"tablas": [
+						{
+							"nombre": "ivr_marcaron_1",
+							"columnas": [
+								{
+									"nombre": "ivm_id",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "cuil",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "ivm_telefono",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "ivm_fecha",
+									"tipo": "TIMESTAMP"
+								},
+								{
+									"nombre": "ivm_fecha1",
+									"tipo": "DATE"
+								},
+								{
+									"nombre": "civ_loans_id_campania",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "uniqueid",
+									"tipo": "FLOAT"
+								}
+							]
+						}
+					]
+				},
+				{
+					"nombre": "telecom_pre_baja",
+					"tablas":[
+						{
+							"nombre": "temp_archivo_MA",
+							"columnas":[
+								{
+								"nombre": "OBJ_ID",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "CUENTA_CODE",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "ID_CLIENTE",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "NRO_TRAMITE",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "NRO_NOMINA",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "FECHA_INICIO_ASIGNACION",
+								"tipo": "DATE"
+							  }, {
+								"nombre": "FECHA_FIN_ASIGNACION",
+								"tipo": "DATE"
+							  }, {
+								"nombre": "MONTO_DE_DEUDA_ASIGNADO",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "GESTOR_ASIGNADO",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "NOMBRE_DEUDOR",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "ID_CUENTA",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "CUST_ID",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "GROUP_CODE",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "NRO_FACTURA",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "IMPORTE_FACTURA",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "SALDO_FACTURA",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "FECHA_EMISION",
+								"tipo": "DATE"
+							  }, {
+								"nombre": "FECHA_VENCIMIENTO",
+								"tipo": "DATE"
+							  }, {
+								"nombre": "LETRA",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "NRO_LEGAL",
+								"tipo": "STRING"
+							  },
+							  {
+								"nombre": "URLGENERADA",
+								"tipo": "STRING"
+							  }
+							]
+						}
+					]
+				},
+				{
+					"nombre": "telecom",
+					"tablas": [
+						{
+							"nombre": "asignacion_Multi_2",
+							"columnas":[
+								{
+									"nombre": "NRO_TRAMITE",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "NRO_CONVENIO",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "SALDO_TRAMITE",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "IMPORTE_TOTAL_CLAVE",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "CLAVE_PAGO",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "FECHA_VENCIMIENTO",
+									"tipo": "DATE"
+								  }, {
+									"nombre": "SEC_COD_BARRA",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "CODIGO_GESTOR",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "APELLIDO_NOMBRE_RAZON_SOCIAL",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "MODO_DE_COBRO",
+									"tipo": "STRING"
+								  }
+							],
+							"nombre2": "cartera_extraPay",
+							"columnas2":[
+								{
+								"nombre": "Apellido_de_Cliente",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Nombre_de_Cliente",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Tipo_DNI",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Numero_DNI",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Edad",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Telefono_de_Contacto",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Mail",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Actividad__Profesion_",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Saldo_Capital",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "Intereses",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "Saldo_Total_Consolidado",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "Dias_de_Mora",
+								"tipo": "INT64"
+							  }
+							],
+							"nombre3":"neo_ticket_x_aplicacion_temp",
+							"columnas3":[
+								{
+								"nombre": "Fecha",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Id_llamada",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Dispositivo",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Servidor",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Placa",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Slot",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Aplicacion",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Id_Aplicacion",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Usuario",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Cola",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Estado",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Sub_Estado",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Inicio",
+								"tipo": "TIMESTAMP"
+							  }, {
+								"nombre": "Conexion",
+								"tipo": "TIMESTAMP"
+							  }, {
+								"nombre": "Fin",
+								"tipo": "TIMESTAMP"
+							  }, {
+								"nombre": "DNIS",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "ANI_Telefono",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Direccion",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Tipo_Grabacion",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Grabacion",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Grabacion_Depurada",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Tipo",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Pais_Provincia",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Ciudad_Localidad",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Costo",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "Precio",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "Importe_Costo",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "Importe_Precio",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "Proveedor",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Detalle",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Duracion",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "TIPO_DISCADOR",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "CRM",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Base",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Id_Contacto",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Datos",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Log",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Sub_Partes",
+								"tipo": "STRING"
+							  }
+							]
+							
+						}
+					]
+
+				},
+				{
+					"nombre":"masivos_TELECOM",
+					"tablas":[
+						{
+							"nombre2": "ivr",
+							"columnas2" :[
+								{
+								"nombre": "Documento",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Telefono",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Estado",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Retorno",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Timbrada",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "Llamada",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "FechaHora",
+								"tipo": "TIMESTAMP"
+							  }, {
+								"nombre": "Descripcion",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Saludo",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Amd",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "Hangup",
+								"tipo": "INT64"
+							  }
+							]
+						}
+					]
+				},
+				{
+					"nombre": "atiendo20_06",
+					"tablas": [
+						{
+							"nombre": "asignacion_diaria_2",
+							"columnas": [
+								{
+									"nombre": "COD_CLIENTE",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "CEDULA",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "NOMBRE",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "FECHA_NACIMIENTO",
+									"tipo": "DATE"
+								},
+								{
+									"nombre": "CEL_REGISTRADO",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "DIRECCION",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "CIUDAD_MUNICIPIO",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "DEPARTAMENTO",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "EMAIL",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "NOMBRE_REF",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "PARENTESCO",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "CELULAR",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "NOMBRE_REF_L",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "CELULAR_13",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "BANCO",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "EMPLEADOR",
+									"tipo": "STRING"
+								},
+								{
+									"nombre": "FECHA_DE_VENCIMIENTO",
+									"tipo": "DATE"
+								},
+								{
+									"nombre": "DIAS_MORA",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "VALOR_PRESTAMO",
+									"tipo": "FLOAT"
+								},
+								{
+									"nombre": "INTERES_REMUNERATORIO",
+									"tipo": "FLOAT"
+								},
+								{
+									"nombre": "CUOTA",
+									"tipo": "FLOAT"
+								},
+								{
+									"nombre": "CUOTAS",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "TOTAL_CUOTAS",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "GASTOS_DE_COBRANZA",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "INTERES_MORATORIO",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "TOTAL_A_COBRAR",
+									"tipo": "INTEGER"
+								},
+								{
+									"nombre": "PAGOS_RECIBIDOS",
+									"tipo": "INTEGER"
+								}
+							],
+							"nombre2":"pag",
+							"columnas2":[
+								{
+									"nombre": "identification_number",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "payment_date",
+									"tipo": "DATE"
+								  }, {
+									"nombre": "payment_method",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "loan_id",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "day_overdue",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "payment_amount",
+									"tipo": "FLOAT64"
+								  }
+							]
+						}
+					]
+				},
+				{
+					"nombre": "masivos_isla_5",
+					"tablas": [
+						{
+							"nombre": "envios_sms_historico_isla_5",
+							"columnas": [
+								{
+									"nombre":"cuil",
+									"tipo":"INTEGER"
+								},
+								{
+									"nombre":"lis_id",
+									"tipo":"INTEGER"
+								},
+								{
+									"nombre":"tel_1",
+									"tipo":"INTEGER"
+								},
+								{
+									"nombre":"fecha_envio",
+									"tipo":"DATE"
+								},
+								{
+									"nombre":"origen",
+									"tipo":"STRING"
+								}
+							]
+						}
+					]
+				},
+				{
+					"nombre": "masivos_UALA",
+					"tablas": [
+						{
+							"nombre": "envios_sms_historico_isla_UALA",
+							"columnas": [
+								{
+									"nombre":"cuil",
+									"tipo":"INTEGER"
+								},
+								{
+									"nombre":"med_tramo",
+									"tipo":"STRING"
+								},
+								{
+									"nombre":"tel_1",
+									"tipo":"INTEGER"
+								},
+								{
+									"nombre":"fecha_envio",
+									"tipo":"DATE"
+								}
+							]
+						}
+					]
+				},
+				{
+					"nombre": "UALA",
+					"tablas":[
+
+						{
+							"nombre": "saldos",
+							"columnas":[
+								{
+									"nombre": "fecha_asignacion",
+									"tipo": "TIMESTAMP"
+								  }, {
+									"nombre": "id_interno_cliente",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "ACCOUNTID",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "DNI",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "inicio_mora_cliente",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "deuda_vencida_cliente",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "deuda_a_vencer_cliente",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "id_interno_cuenta",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "numero_cuenta",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "inicio_mora_cuenta",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "deuda_vencida_cuenta",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "deuda_a_vencer_cuenta",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "saldo_capital_cuenta",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "intereses",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "int_compensatorio",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "producto",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "fecha_proximo_vencimiento",
+									"tipo": "TIMESTAMP"
+								  }, {
+									"nombre": "monto_proximo_vencimiento",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "cuotas_pendientes",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "cuotas_vencidas",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "tramo",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "ddm_max_per",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "deuda_venc_max_per",
+									"tipo": "FLOAT64"
+								  }
+							],
+							"nombre2": "pag",
+							"columnas2":[
+								{
+								"nombre": "tipo_pago",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "id_pago",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "numero_cliente",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "nombre",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "apellido",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "fecha_asignacion",
+								"tipo": "DATE"
+							  }, {
+								"nombre": "fecha_origen",
+								"tipo": "DATE"
+							  }, {
+								"nombre": "pago",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "fecha_vencimiento",
+								"tipo": "DATE"
+							  }, {
+								"nombre": "deuda_vencida",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "deuda_a_vencer",
+								"tipo": "FLOAT64"
+							  }, {
+								"nombre": "producto",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "bocacobro",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "numero_cuenta",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "comprobante",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "fecha_carga_sys",
+								"tipo": "DATE"
+							  }
+							]
+
+						}
+					]
+
+				},
+				{
+					"nombre": "atiendo20_07",
+					"tablas": 
+					[
+						{
+							"nombre": "listas_asignacion01",
+							"columnas": [
+								{
+									"nombre": "fechagestion",
+									"tipo": "TIMESTAMP"
+								  }, {
+									"nombre": "codagencia",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "Agencia",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Gestor",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "codofi",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "oficina",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "territorio",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Cliente",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "contrato",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "coddocumento",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "codcentral",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "uga",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "entidad",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "subprod",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "moneda",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "saldo",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "FechaVenc",
+									"tipo": "TIMESTAMP"
+								  }, {
+									"nombre": "DiasVenc",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "Producto",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "ubigeo",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "departamento",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "provincia",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "distrito",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "tipdoc",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "numdoc",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "dirprin",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "refere1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "refere2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "ubica",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "coddpto",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "codprov",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "coddist",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "tiptel1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "pretel1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "numtel1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "exttel1",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "tiptel2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "pretel2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "numtel2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "exttel2",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "tiptel3",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "pretel3",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "numtel3",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "exttel3",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "a1tipt1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a1pret1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a1numt1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a1exte1",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "a1tipt2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a1pret2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a1numt2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a1exte2",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "a2tipt1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a2pret1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a2numt1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a2exte1",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "a2tipt2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a2pret2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a2numt2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a2exte2",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "a3tipt1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a3pret1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a3numt1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a3exte1",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "a3tipt2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a3pret2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a3numt2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "a3exte2",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "TipoFono1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Prefijo1",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "Fono1",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Extension1",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "TipoFono2",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Prefijo2",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "Fono2",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "Extension2",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "email",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Tramo",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "LiqTotal",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "FechaIngresoMora",
+									"tipo": "TIMESTAMP"
+								  }, {
+									"nombre": "ImpIngresoMora",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "FechaNacimiento",
+									"tipo": "DATE"
+								  }, {
+									"nombre": "NroEntidades",
+									"tipo": "FLOAT64"
+								  }, {
+									"nombre": "Camp",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "MejorGestion",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "UltimoContactoDI",
+									"tipo": "TIMESTAMP"
+								  }, {
+									"nombre": "Rpta",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "TipoFono",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Prefijo",
+									"tipo": "INT64"
+								  }, {
+									"nombre": "Fono",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "Extension",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "supervisor",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "contacto",
+									"tipo": "STRING"
+								  }, {
+									"nombre": "direccion",
+									"tipo": "STRING"
+								  }
+
+							],
+							"nombre2": "gestiones",
+							"columnas2": 
+							[
+								{
+								"nombre": "ges_id",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "ges_fecha",
+								"tipo": "TIMESTAMP"
+							  }, {
+								"nombre": "res_codigo",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "ges_duracion",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "lis_id",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "est_codigo",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "cuil",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "age_id",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "ges_tipo",
+								"tipo": "INT64"
+							  }, {
+								"nombre": "gestion_uniqueid",
+								"tipo": "STRING"
+							  }, {
+								"nombre": "ges_info",
+								"tipo": "INT64"
+							  }
+							]
+						}
+					]
+
+				}
+
+			]
+		}
+	]
+}
+    
+
+
